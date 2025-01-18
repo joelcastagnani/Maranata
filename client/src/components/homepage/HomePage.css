@@ -1,0 +1,12 @@
+.homePageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homePageButton{
+    margin: 1rem;
+    width: 50%;
+    height: 50px;
+    font-size: xx-large;
+}
