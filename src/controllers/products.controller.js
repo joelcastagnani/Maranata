@@ -16,7 +16,7 @@ const createProduct = async (req, res) => {
 };
 const readProducts = async (req, res) => {
   try {
-    const {page} = req.query;
+    const { page } = req.query;
     const all = await read(page);
     return res.status(200).json({ message: "Read!", response: all });
   } catch (error) {

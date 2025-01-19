@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import './Formulario.css';
+import "./Formulario.css";
 
 function Formulario() {
   const [formData, setFormData] = useState({
-    nombre: "",
-    direccion: "",
-    telefono: "",
-    pedido: "",
+    name: "",
+    address: "",
+    phone: "",
+    order: "",
   });
 
   const handleChange = (e) => {
@@ -20,7 +20,7 @@ function Formulario() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/pedidos", {
+      const response = await fetch("http://localhost:8080/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function Formulario() {
       if (response.ok) {
         const data = await response.json();
         alert("Pedido creado exitosamente: " + JSON.stringify(data));
-        setFormData({ nombre: "", direccion: "", telefono: "", pedido: "" }); // Limpiar formulario
+        setFormData({ nombre: "", direccion: "", telefono: "", pedido: "" });
       } else {
         const error = await response.json();
         alert("Error al crear el pedido: " + error.message);
@@ -42,56 +42,58 @@ function Formulario() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="nombre">Nombre:</label>
+    <form className="formContainer" onSubmit={handleSubmit}>
+      <div className="input">
+        <label htmlFor="name">Nombre:</label>
         <input
           type="text"
-          id="nombre"
-          name="nombre"
+          id="name"
+          name="name"
           placeholder="Tu nombre"
-          value={formData.nombre}
+          value={formData.name || ""}
           onChange={handleChange}
           required
         />
       </div>
-      <div>
-        <label htmlFor="direccion">Dirección:</label>
+      <div className="input">
+        <label htmlFor="address">Dirección:</label>
         <input
           type="text"
-          id="direccion"
-          name="direccion"
+          id="address"
+          name="address"
           placeholder="Tu dirección"
-          value={formData.direccion}
+          value={formData.address || ""}
           onChange={handleChange}
           required
         />
       </div>
-      <div>
-        <label htmlFor="telefono">Teléfono:</label>
+      <div className="input">
+        <label htmlFor="phone">Teléfono:</label>
         <input
-          type="tel"
-          id="telefono"
-          name="telefono"
+          type="text"
+          id="phone"
+          name="phone"
           placeholder="Tu teléfono"
-          value={formData.telefono}
+          value={formData.phone || ""}
           onChange={handleChange}
           required
         />
       </div>
-      <div>
-        <label htmlFor="pedido">Pedido:</label>
+      <div className="input">
+        <label htmlFor="order">Pedido:</label>
         <textarea
-          id="pedido"
-          name="pedido"
+          id="order"
+          name="order"
           placeholder="Detalles del pedido"
           rows="4"
-          value={formData.pedido}
+          value={formData.order || ""}
           onChange={handleChange}
           required
         ></textarea>
       </div>
-      <button type="submit">Enviar</button>
+      <button className="submit" type="submit">
+        Enviar
+      </button>
     </form>
   );
 }

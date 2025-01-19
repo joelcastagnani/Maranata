@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import dbConnect from "./src/utils/dbConnect.util.js";
 import argsUtils from "./src/utils/args.utils.js";
 import router from "./src/routers/index.router.js";
@@ -19,16 +19,24 @@ const ready = async () => {
   await dbConnect();
 };
 
-server.use(cors({ origin: "http://localhost:8080" }));
+// Middleware de CORS
+// server.use(cors({ origin: "http://localhost:8080" }));
+server.use(cors());
 
+// Middleware para parsear JSON y formularios
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
+// Rutas de la API
+server.use("/api", router);
+
+// Servir archivos estáticos después de las rutas de la API
 server.use(express.static(path.join(__dirname, "client", "dist")));
 
+// Manejar rutas no encontradas con el wildcard
 server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
-server.use("/api", router);
+// Iniciar el servidor
 server.listen(port, ready);

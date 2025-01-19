@@ -16,16 +16,10 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/formulario" element={<Formulario />} />
       </Routes>
     </Router>
   );
 };
 
 export default App;
-
-{
-  /* <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/crearpedido" element={<Formulario />} />
-      </Routes> */
-}
