@@ -5,8 +5,19 @@
 }
 
 .homePageButton{
+    border: 2px solid var(--color5);
     margin: 1rem;
     width: 500px;
     height: 50px;
     font-size: xx-large;
+    background-color: var(--color1);
+    color: var(--color5);
+    border-radius: 20px;
+}
+
+.homePageButton:hover{
+    background-color: var(--color5);
+    color: var(--color1);
+    scale: 110%;
+    transition: 1s;
 }

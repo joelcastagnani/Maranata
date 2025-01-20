@@ -5,17 +5,17 @@ import "./navbar.css";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <ul className="navbar-list">
-        <li className="navbar-item">
-          <Link to="/" className="navbar-link">INICIO</Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/nose1" className="navbar-link">NOSE1</Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/nose2" className="navbar-link">NOSE2</Link>
-        </li>
-      </ul>
+      <Link to="/" className="navbar-link">
+        INICIO
+      </Link>
+
+      <Link to="/nose1" className="navbar-link">
+        -------
+      </Link>
+
+      <Link to="/nose2" className="navbar-link">
+      -------
+      </Link>
     </nav>
   );
 };

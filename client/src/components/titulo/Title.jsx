@@ -2,12 +2,7 @@ import React from "react";
 import "./Title.css";
 
 const Title = () => {
-    return(
-        <div className="titleContainer">
-            <h1 className="title">MARANATA</h1>
-        </div>
-    );
-
+  return <h1 className="title playwrite-vn-title">Maranata</h1>;
 };
 
 export default Title;
