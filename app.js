@@ -20,8 +20,12 @@ const ready = async () => {
 };
 
 // Middleware de CORS
-// server.use(cors({ origin: "http://localhost:8080" }));
-server.use(cors());
+server.use(cors({
+  origin: ["http://localhost:5173", "http://localhost:8080"], // Dominios permitidos
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+  credentials: true, // Permitir envío de cookies o headers autorizados
+}));
+
 
 // Middleware para parsear JSON y formularios
 server.use(express.json());

@@ -13,11 +13,12 @@
     background-color: var(--color1);
     color: var(--color5);
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .homePageButton:hover{
     background-color: var(--color5);
     color: var(--color1);
     scale: 110%;
-    transition: 1s;
+    transition: .5s;
 }

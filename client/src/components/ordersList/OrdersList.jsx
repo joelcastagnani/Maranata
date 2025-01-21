@@ -45,16 +45,27 @@ const OrdersList = () => {
 
   return (
     <div className="ordersListContainer">
-      <h1>Lista de Pedidos</h1>
+      <h1 className="listTitle">Lista de Pedidos</h1>
 
       {orders.length > 0 ? (
         orders.map((order) => (
           <Order
             key={order._id}
+            id={order._id}
             name={order.name}
             address={order.address}
             phone={order.phone}
             order={order.order}
+            onOrderUpdate={(updatedOrder) =>
+              setOrders((prevOrders) =>
+                prevOrders.map((o) =>
+                  o._id === updatedOrder._id ? updatedOrder : o
+                )
+              )}
+            onOrderDelete={(deletedId) =>
+              setOrders((prevOrders) =>
+                prevOrders.filter((o) => o._id !== deletedId)
+              )}
           />
         ))
       ) : (

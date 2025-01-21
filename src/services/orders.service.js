@@ -31,6 +31,10 @@ const createMocks = async (quantity) => {
   return orders;
 };
 const deleteOrderService = async (id) => {
+  const order = await Order.findById(id);
+  if (!order) {
+    throw new Error('Pedido no encontrado');
+  }
   return await Order.findByIdAndDelete(id);
 };
 const updateOrderService = async (id, updateData) => {

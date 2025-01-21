@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Navbar from "./components/navbar/Navbar.jsx";
 import HomePage from "./components/homepage/HomePage.jsx";
@@ -13,6 +15,7 @@ const App = () => {
     <Router>
       <Title />
       <Navbar />
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/formulario" element={<Formulario />} />
