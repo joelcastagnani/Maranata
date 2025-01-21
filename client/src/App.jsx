@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactDOM from "react-dom/client";
+import Modal from "react-modal";
 
 import Navbar from "./components/navbar/Navbar.jsx";
 import HomePage from "./components/homepage/HomePage.jsx";
@@ -24,5 +26,8 @@ const App = () => {
     </Router>
   );
 };
+
+
+
 
 export default App;
