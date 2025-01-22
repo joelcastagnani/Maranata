@@ -5,12 +5,23 @@ import "./HomePage.css";
 const HomePage = () => {
   return (
     <div className="homePageContainer roboto-general">
-      <Link to="/formulario">
-        <button className="homePageButton">Crear nuevo pedido</button>
-      </Link>
-      <Link to="/pedidos">
-        <button className="homePageButton">Ver pedidos</button>
-      </Link>
+      <section className="optionsColumn">
+        <Link to="/formulario">
+          <button className="homePageButton">Crear nuevo pedido</button>
+        </Link>
+        <Link to="/pedidos">
+          <button className="homePageButton">Ver pedidos</button>
+        </Link>
+      </section>
+
+      <section className="optionsColumn">
+        <Link to="/productForm">
+          <button className="homePageButton">Crear nuevo producto</button>
+        </Link>
+        <Link to="/products">
+          <button className="homePageButton">Ver productos</button>
+        </Link>
+      </section>
     </div>
   );
 };

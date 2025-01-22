@@ -8,6 +8,7 @@ import {
 const createProduct = async (req, res) => {
   try {
     const data = req.body;
+    
     const one = await create(data);
     return res.status(201).json({ message: "Created!", response: one });
   } catch (error) {

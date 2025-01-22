@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Formulario.css";
+import "./OrderForm.css";
 
-function Formulario() {
+function OrderForm() {
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -103,6 +103,6 @@ function Formulario() {
       </button>
     </form>
   );
-}
+};
 
-export default Formulario;
+export default OrderForm;

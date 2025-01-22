@@ -8,9 +8,10 @@ import Modal from "react-modal";
 
 import Navbar from "./components/navbar/Navbar.jsx";
 import HomePage from "./components/homepage/HomePage.jsx";
-import Formulario from "./components/form/Formulario.jsx";
+import OrderForm from "./components/orderForm/OrderForm.jsx";
 import Title from "./components/titulo/Title.jsx";
 import OrdersList from "./components/ordersList/OrdersList.jsx";
+import ProductForm from "./components/productForm/Productform.jsx";
 
 const App = () => {
   return (
@@ -20,8 +21,9 @@ const App = () => {
       <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/formulario" element={<Formulario />} />
+        <Route path="/orderForm" element={<OrderForm />} />
         <Route path="/pedidos" element={<OrdersList />} />
+        <Route path="/productForm" element={<ProductForm />} />
       </Routes>
     </Router>
   );
