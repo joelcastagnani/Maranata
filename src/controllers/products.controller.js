@@ -1,8 +1,11 @@
+import Product from "../dao/models/product.model.js";
 import {
   create,
   createMock,
   createMocks,
   read,
+  deleteProductService,
+  updateProductService,
 } from "../services/products.service.js";
 
 const createProduct = async (req, res) => {
@@ -13,6 +16,19 @@ const createProduct = async (req, res) => {
     return res.status(201).json({ message: "Created!", response: one });
   } catch (error) {
     return res.status(500).json({ error });
+  }
+};
+const readOneProduct = async (req, res, next) => {
+  try {
+    const { pid } = req.params;
+    const one = await Product.findById(pid);
+    if (one) {
+      return res.status(200).json({ message: "Read!", response: one });
+    } else {
+      return res.status(404).json({ message: "Not found!" });
+    }
+  } catch (error) {
+    next(error);
   }
 };
 const readProducts = async (req, res) => {
@@ -45,5 +61,36 @@ const createMockProducts = async (req, res) => {
     return res.status(500).json({ error });
   }
 };
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteProductService(id);
+    res.status(200).json({ message: "Producto eliminado con éxito" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
 
-export { createProduct, readProducts, createMockProduct, createMockProducts };
+  try {
+    if (!id) {
+      return res.status(400).json({ message: "Falta el ID del producto" });
+    }
+
+    const updatedProduct = await updateProductService(id, updateData);
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+
+    res.status(200).json({ message: "Producto actualizado con éxito", updatedProduct });
+  } catch (error) {
+    console.error("Error actualizando el producto:", error);
+    res.status(500).json({ message: "Error al actualizar el producto", error: error.message });
+  }
+};
+
+
+export { createProduct, readProducts, createMockProduct, createMockProducts, readOneProduct, deleteProduct, updateProduct  };

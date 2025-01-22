@@ -92,13 +92,15 @@ const productSchema = new mongoose.Schema(
     image: {
       type: String,
       //   trim: true, // URL de la imagen del producto (opcional)
-    }
+    },
   },
   {
     timestamps: true, // Agrega createdAt y updatedAt automáticamente
   }
 );
 
-// Exportar el modelo
+productSchema.plugin(mongoosePaginate);
+
+
 const Product = mongoose.model("Product", productSchema);
 export default Product;

@@ -29,5 +29,15 @@ const createMocks = async (quantity) => {
   }
   return prods;
 };
+const deleteProductService = async (id) => {
+  const product = await Product.findById(id);
+  if (!product) {
+    throw new Error('Producto no encontrado');
+  }
+  return await Product.findByIdAndDelete(id);
+};
+const updateProductService = async (id, updateData) => {
+  return await Product.findByIdAndUpdate(id, updateData, { new: true });
+};
 
-export { create, read, createMock, createMocks };
+export { create, read, createMock, createMocks, deleteProductService, updateProductService };

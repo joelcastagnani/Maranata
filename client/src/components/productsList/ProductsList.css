@@ -1,0 +1,10 @@
+.productsListContainer{
+    border: 1px solid black;
+}
+
+.listTitle{
+    margin: 1rem;
+    background-color: var(--color2);
+    padding: 1rem;
+    border-radius: 50px;
+}

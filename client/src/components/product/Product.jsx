@@ -2,28 +2,32 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
-import "./Order.css";
+import "./Product.css";
+import axiosConfig from "../../utils/axiosConfig.js";
 
 Modal.setAppElement("#root");
 
-const Order = ({
+const Product = ({
   id,
   name,
-  address,
-  phone,
-  order,
-  onOrderUpdate,
-  onOrderDelete,
+  description,
+  price,
+  category,
+  subcategory,
+  image,
+  onProductUpdate,
+  onProductDelete,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name,
-    address,
-    phone,
-    order,
+    description,
+    price,
+    category,
+    subcategory,
+    image,
   });
 
-  // Manejar cambios en el formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -33,13 +37,13 @@ const Order = ({
   };
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/orders/${id}`);
-      onOrderDelete(id); // Llama a la función para actualizar la lista en el cliente
-      toast.success("Pedido eliminado con éxito.");
+      await axiosConfig.delete(`/api/products/${id}`);
+      onProductDelete(id);
+      toast.success("Producto eliminado con éxito.");
     } catch (error) {
-      console.error("Error eliminando la orden:", error);
+      console.error("Error eliminando el Producto:", error);
       toast.error(
-        `Error eliminando la orden: ${
+        `Error eliminando el producto: ${
           error.response?.data?.error || error.message
         }`
       );
@@ -47,14 +51,14 @@ const Order = ({
   };
   const handleEdit = async () => {
     try {
-      const response = await axios.put(`/api/orders/${id}`, formData);
-      onOrderUpdate(response.data); // Llama a la función para actualizar la orden en el cliente
-      setIsModalOpen(false); // Cerrar el modal después de la actualización
-      toast.success("Pedido actualizado con éxito.");
+      const response = await axios.put(`/api/products/${id}`, formData);
+      onProductUpdate(response.data);
+      setIsModalOpen(false);
+      toast.success("Producto actualizado con éxito.");
     } catch (error) {
-      console.error("Error actualizando la orden:", error);
+      console.error("Error actualizando el producto:", error);
       toast.error(
-        `Error actualizando la orden: ${
+        `Error actualizando el producto: ${
           error.response?.data?.error || error.message
         }`
       );
@@ -62,27 +66,29 @@ const Order = ({
   };
 
   return (
-    <div className="orderContainer">
+    <div className="productContainer">
       <div className="information">
-        <h2>{address}</h2>
-        <p>Nombre: {name}</p>
-        <p>Teléfono: {phone}</p>
-        <p>Pedido: {order}</p>
+        <h2>{name}</h2>
+        <p>{description}</p>
+        <p>{price}</p>
+        <p>{category}</p>
+        <p>{subcategory}</p>
+        <p>{image}</p>
       </div>
       <div className="options">
         <button onClick={() => setIsModalOpen(true)}>Editar</button>
         <button onClick={handleDelete}>Eliminar</button>
       </div>
 
-      {/* Modal para editar el pedido */}
+      {/* Modal para editar el producto */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
-        contentLabel="Editar Pedido"
+        contentLabel="Editar producto"
         className="modal"
         overlayClassName="overlay"
       >
-        <h2>Editar Pedido</h2>
+        <h2>Editar producto</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
             <label>Nombre:</label>
@@ -94,29 +100,38 @@ const Order = ({
             />
           </div>
           <div>
-            <label>Dirección:</label>
+            <label>Descripcion: </label>
             <input
               type="text"
-              name="address"
-              value={formData.address}
+              name="description"
+              value={formData.description}
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <label>Teléfono:</label>
+            <label>Precio: </label>
             <input
               type="text"
-              name="phone"
-              value={formData.phone}
+              name="price"
+              value={formData.price}
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <label>Pedido:</label>
+            <label>Categoria: </label>
             <input
               type="text"
-              name="order"
-              value={formData.order}
+              name="category"
+              value={formData.category}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label>Subcategoria: </label>
+            <input
+              type="text"
+              name="subcategory"
+              value={formData.subcategory}
               onChange={handleInputChange}
             />
           </div>
@@ -134,4 +149,4 @@ const Order = ({
   );
 };
 
-export default Order;
+export default Product;

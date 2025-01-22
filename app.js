@@ -6,6 +6,7 @@ import env from "./src/utils/env.util.js";
 import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
+import authRouter from "./src/routers/auth.router.js";
 
 const server = express();
 const port = env.PORT || 8080;
@@ -33,6 +34,7 @@ server.use(express.urlencoded({ extended: true }));
 
 // Rutas de la API
 server.use("/api", router);
+server.use("/api/auth", authRouter);
 
 // Servir archivos estáticos después de las rutas de la API
 server.use(express.static(path.join(__dirname, "client", "dist")));
@@ -44,3 +46,5 @@ server.get("*", (req, res) => {
 
 // Iniciar el servidor
 server.listen(port, ready);
+
+export default server;
