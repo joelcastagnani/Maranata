@@ -1,68 +1,76 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Para redirigir a otras rutas
-import axios from "axios"; // Asegúrate de tener Axios instalado
-import "./Register.css"; // Estilos personalizados para el registro
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  const navigate = useNavigate(); // Hook para redirigir
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const handleRegister = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!email || !password) {
-      setError("Todos los campos son obligatorios.");
-      return;
-    }
-
     try {
-      const response = await axios.post("/api/auth/register", {
-        email,
-        password,
-      });
-
-      navigate("/login");
+      // Hacemos la solicitud POST al backend
+      const response = await axios.post("/api/auth/register", formData);
+      if (response.status === 201) {
+        alert("Usuario registrado con éxito.");
+        navigate("/login"); // Redirigimos a la página de login después del registro
+      }
     } catch (error) {
-      setError("Error al registrar el usuario.");
+      console.error("Error en el registro:", error);
+      alert("Hubo un error al registrar el usuario.");
     }
   };
 
   return (
-    <div className="registerContainer">
-      <h2>Registrarse</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button className="registerButton" type="submit">
-          Registrarse
-        </button>
+    <div>
+      <h2>Registro</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Nombre de usuario</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Registrar</button>
       </form>
-      {error && <p className="error">{error}</p>}{" "}
-      {/* Mostrar errores si existen */}
-      <div className="redirectContainer">
-        <p>¿Ya tienes una cuenta?</p>
-        <button
-          className="loginRedirectButton"
-          onClick={() => navigate("/login")} // Redirige a la página de login
-        >
-          Ingresar
-        </button>
-      </div>
     </div>
   );
 };

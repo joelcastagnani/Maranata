@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className="homePageContainer roboto-general">
       <section className="optionsColumn">
-        <Link to="/formulario">
+        <Link to="/orderForm">
           <button className="homePageButton">Crear nuevo pedido</button>
         </Link>
         <Link to="/pedidos">
