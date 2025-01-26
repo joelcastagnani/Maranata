@@ -13,7 +13,32 @@
   text-decoration: none;
 }
 
+a{
+  display: flex;
+}
+
+#root{
+  display: flex;
+  justify-content: center;
+}
+
 html {
   display: flex;
   justify-content: center;
+  border: 1px solid var(--color1);
+  background-color: black;
+}
+
+body {
+  background-color: #854f6c;
+  width: 50%;
+  border: 15px solid var(--color1);
+  border-radius: 20px;
+}
+
+.appContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
 }

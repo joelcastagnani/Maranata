@@ -28,9 +28,6 @@
     --color4: #522b5b;
     --color5: #190019;
   }
-  html{
-    background-color: black;
-  }
   .backgroundContainer {
     background-color: var(--color3);
     height: 400px;
@@ -49,12 +46,6 @@
     background-color: #474b4e;
     width: 50%;
     position: relative;
-  }
-  .title {
-    font-size: 40px;
-    position: absolute;
-    left: 10%;
-    color: var(--color5)
   }
   .options {
     height: 30px;

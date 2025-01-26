@@ -26,14 +26,28 @@ const Dashboard = () => {
     }
   };
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+  
     try {
-      const response = await axios.post("http://localhost:8080/api/auth/login", {email,password});
-      localStorage.setItem("token", response.data.token);
-      navigate("/"); 
+      // Hacer la solicitud POST al backend
+      const response = await axios.post("/api/auth/login", {
+        email,
+        password,
+      });
+  
+      if (response.status === 200) {
+        // Si el login es exitoso, guardar el token en el localStorage
+        localStorage.setItem("token", response.data.token);
+        
+        // Redirigir a la página de inicio o dashboard
+        navigate("/homepage"); // Cambia esto a la ruta de tu aplicación
+      }
     } catch (error) {
-      setError("Credenciales incorrectas o error de conexión");
-  }};
+      // Manejar errores (como usuario o contraseña incorrectos)
+      console.error("Error al iniciar sesión:", error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || "Hubo un error al iniciar sesión");
+    }
+  };
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -155,3 +169,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

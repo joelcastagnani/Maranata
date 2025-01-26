@@ -7,12 +7,17 @@ import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import authRouter from "./src/routers/auth.router.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const server = express();
 const port = env.PORT || 8080;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
 
 const ready = async () => {
   const mode = argsUtils.mode;
@@ -21,12 +26,13 @@ const ready = async () => {
 };
 
 // Middleware de CORS
-server.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:8080"], // Dominios permitidos
-  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
-  credentials: true, // Permitir envío de cookies o headers autorizados
-}));
-
+server.use(
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:8080"], // Dominios permitidos
+    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+    credentials: true, // Permitir envío de cookies o headers autorizados
+  })
+);
 
 // Middleware para parsear JSON y formularios
 server.use(express.json());

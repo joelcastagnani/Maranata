@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,34 +12,34 @@ import OrdersList from "./components/ordersList/OrdersList.jsx";
 import ProductForm from "./components/productForm/Productform.jsx";
 import ProductsList from "./components/productsList/ProductsList.jsx";
 import Main from "./main.jsx";
-import Dashboard from "./components/dashboard/Dashboard.jsx"
+import Dashboard from "./components/dashboard/Dashboard.jsx";
 
 const App = () => {
   return (
     <BrowserRouter>
       <ToastContainer position="top-right" autoClose={1000} />
-
       <Routes>
-        <Route path="/" element={<Dashboard />}/>
+        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/homepage"
+          element={
+            <div className="appContainer">
+              <Title />
+              <HomePage />
+            </div>
+          }
+        />
       </Routes>
-
     </BrowserRouter>
   );
 };
 
 export default App;
 
-
-
 // <Router>
-
-// <ToastContainer position="top-right" autoClose={1000} />
 
 // <Routes>
 //   <Route path="/" element={<Dashboard />} />
-//   <Route path="/login" element={<Login />} />
-//   <Route path="/register" element={<Register />} />
-//   <Route path="/homepage" element={<HomePage />} />
 
 //   <Route
 //     path="/orderForm"

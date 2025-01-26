@@ -1,8 +1,9 @@
 .title{
-  /* border: 1px solid black; */
   text-align: center;
-  margin: 1rem;
-  font-size: 80px;
+  margin-bottom: 1rem;
+  font-size: 250%;
+  color: var(--color1);
+  text-shadow: 2px 2px 5px var(--color4);
 }
 
 .playwrite-vn-title {
