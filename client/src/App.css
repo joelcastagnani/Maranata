@@ -25,13 +25,15 @@ a{
 html {
   display: flex;
   justify-content: center;
-  border: 1px solid var(--color1);
+  align-items: center;
   background-color: black;
+  height: 100vh;
 }
 
 body {
   background-color: #854f6c;
   width: 50%;
+  height: 65%;
   border: 15px solid var(--color1);
   border-radius: 20px;
 }
