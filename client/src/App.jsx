@@ -20,15 +20,28 @@ const App = () => {
       <ToastContainer position="top-right" autoClose={1000} />
       <Routes>
         <Route path="/" element={<Dashboard />} />
+
         <Route
           path="/homepage"
           element={
-            <div className="appContainer">
+            <div className="homeAppContainer">
               <Title />
               <HomePage />
             </div>
           }
         />
+
+        <Route
+          path="/orderform"
+          element={
+            <div className="orderFromAppContainer">
+              <Title />
+              <OrderForm />
+            </div>
+          }
+        />
+
+
       </Routes>
     </BrowserRouter>
   );
@@ -41,15 +54,7 @@ export default App;
 // <Routes>
 //   <Route path="/" element={<Dashboard />} />
 
-//   <Route
-//     path="/orderForm"
-//     element={
-//       <>
-//         <Navbar />
-//         <OrderForm />
-//       </>
-//     }
-//   />
+//   
 //   <Route
 //     path="/orders"
 //     element={

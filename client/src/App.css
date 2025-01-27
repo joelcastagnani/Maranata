@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
 :root {
   --color1: #fbe4d8;
   --color2: #dfb6b2;
@@ -5,23 +11,6 @@
   --color4: #522b5b;
   --color5: #190019;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
-a{
-  display: flex;
-}
-
-#root{
-  display: flex;
-  justify-content: center;
-}
-
 html {
   display: flex;
   justify-content: center;
@@ -29,18 +18,28 @@ html {
   background-color: black;
   height: 100vh;
 }
-
-body {
+.mainFont {
+  font-family: "DM Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+.playwrite-vn-title {
+  font-family: "Playwrite VN", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+.homeAppContainer{
   background-color: #854f6c;
-  width: 50%;
-  height: 65%;
   border: 15px solid var(--color1);
   border-radius: 20px;
-}
-
-.appContainer{
+  height: 80vh;
+  width: 60vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 600px;
 }
+

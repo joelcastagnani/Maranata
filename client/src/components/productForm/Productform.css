@@ -1,4 +1,4 @@
-.formContainer{
+/* .formContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,13 +34,13 @@
     transition: .3s;
 }
 
-/* .inputsContainer{
+ .inputsContainer{
     border: 1px solid black;
-} */
+}
 
 .inputBar{
     border: none;
     height: 50%;
     width: 50%;
     text-align: center;
-}
+} */

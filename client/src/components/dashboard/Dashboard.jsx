@@ -27,25 +27,30 @@ const Dashboard = () => {
   };
   const handleLogin = async (e) => {
     e.preventDefault(); // Evitar que se recargue la página al enviar el formulario
-  
+
     try {
       // Hacer la solicitud POST al backend
       const response = await axios.post("/api/auth/login", {
         email,
         password,
       });
-  
+
       if (response.status === 200) {
         // Si el login es exitoso, guardar el token en el localStorage
         localStorage.setItem("token", response.data.token);
-        
+
         // Redirigir a la página de inicio o dashboard
         navigate("/homepage"); // Cambia esto a la ruta de tu aplicación
       }
     } catch (error) {
       // Manejar errores (como usuario o contraseña incorrectos)
-      console.error("Error al iniciar sesión:", error.response?.data?.message || error.message);
-      toast.error(error.response?.data?.message || "Hubo un error al iniciar sesión");
+      console.error(
+        "Error al iniciar sesión:",
+        error.response?.data?.message || error.message
+      );
+      toast.error(
+        error.response?.data?.message || "Hubo un error al iniciar sesión"
+      );
     }
   };
   const handleChange = (e) => {
@@ -70,14 +75,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="backgroundContainer">
-      <div className="formContainer">
+    <div className="dashBackgroundContainer">
+      <div className="dashFormContainer">
         <h1 className="title playwrite-vn-title">Maranata</h1>
 
-        <div className="options">
+        <div className="dashOptions">
           <button
             onClick={() => toggleForm("login")}
-            className={`optionsButton dm-sans-mainFont ${
+            className={`dashOptionsButton dm-sans-mainFont ${
               isLoginActive ? "active" : ""
             }`}
           >
@@ -85,7 +90,7 @@ const Dashboard = () => {
           </button>
           <button
             onClick={() => toggleForm("register")}
-            className={`optionsButton dm-sans-mainFont ${
+            className={`dashOptionsButton dm-sans-mainFont ${
               !isLoginActive ? "active" : ""
             }`}
           >
@@ -95,7 +100,7 @@ const Dashboard = () => {
 
         {/* Formulario Login */}
         {isLoginActive && (
-          <form onSubmit={handleLogin} className="form loginForm showForm">
+          <form onSubmit={handleLogin} className="notForm loginForm showForm">
             <div className="inputsForm">
               <input
                 className="input"
@@ -114,7 +119,7 @@ const Dashboard = () => {
                 required
               />
             </div>
-            <input className="submitLogin" type="submit" value="Ingresar" />
+            <input className="dashSubmitLogin" type="submit" value="Ingresar" />
           </form>
         )}
 
@@ -122,7 +127,7 @@ const Dashboard = () => {
         {!isLoginActive && (
           <form
             onSubmit={handleSubmit}
-            className="form registrateForm showForm"
+            className="notForm registrateForm showForm"
           >
             <div className="inputsForm">
               <input
@@ -169,4 +174,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
