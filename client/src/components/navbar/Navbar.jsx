@@ -5,16 +5,16 @@ import "./navbar.css";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar-link">
+      <Link to="/homepage" className="navbar-link">
         INICIO
       </Link>
 
-      <Link to="/nose1" className="navbar-link">
-        -------
+      <Link to="/admin" className="navbar-link">
+        ADMIN
       </Link>
 
-      <Link to="/nose2" className="navbar-link">
-      -------
+      <Link to="/NOSAWEE" className="navbar-link">
+        -------
       </Link>
     </nav>
   );

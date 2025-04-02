@@ -1,0 +1,42 @@
+.modalTicket {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modalTicket-content {
+  padding: 20px;
+  width: 30%;
+  height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  overflow: scroll;
+}
+.ticket-details {
+  font-size: 25px;
+}
+.closeTicket {
+  width: 20%;
+  font-size: 50px;
+  cursor: pointer;
+}
+.orderTicket-items {
+  border: 3px solid white;
+}
+.totalTicket{
+    font-size: 40px;
+}
+.adress{
+    font-size: 40px;
+}

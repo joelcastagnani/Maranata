@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  # Servicio para MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  # Servicio para el backend (Node.js)
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongodb:27017/nombre_de_tu_base_de_datos
+    depends_on:
+      - mongodb
+
+  # Servicio para el frontend (React)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+# Volumen para persistir datos de MongoDB
+volumes:
+  mongodb_data:

@@ -1,0 +1,371 @@
+[
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f1"
+    },
+    "name": "Tortilla de Papa Común",
+    "description": "Tortilla clásica de papa, ideal para cualquier ocasión.",
+    "price": 5.99,
+    "image": "https://example.com/images/tortilla_papa_comun.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f2"
+    },
+    "name": "Tortilla de Papa Rellena",
+    "description": "Tortilla de papa rellena con ingredientes frescos y sabrosos.",
+    "price": 7.49,
+    "image": "https://example.com/images/tortilla_papa_rellena.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f3"
+    },
+    "name": "Tortilla de Verdura",
+    "description": "Una tortilla ligera y saludable con una mezcla de verduras frescas.",
+    "price": 6.49,
+    "image": "https://example.com/images/tortilla_verdura.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f5"
+    },
+    "name": "Pizza-Mozzarella",
+    "description": "Pizza con mozzarella derretida y una base crujiente.",
+    "price": 10.99,
+    "image": "https://example.com/images/pizza_mozzarella.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f6"
+    },
+    "name": "Pizza-Especial",
+    "description": "Pizza especial con una combinación de ingredientes frescos y sabrosos.",
+    "price": 12.99,
+    "image": "https://example.com/images/pizza_especial.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f7"
+    },
+    "name": "Pizza-Calabresa",
+    "description": "Pizza con rodajas de calabresa, tomate, y mozzarella.",
+    "price": 11.49,
+    "image": "https://example.com/images/pizza_calabresa.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f8"
+    },
+    "name": "Pizza-Napolitana",
+    "description": "Pizza estilo napolitano con tomate, albahaca y mozzarella.",
+    "price": 9.99,
+    "image": "https://example.com/images/pizza_napolitana.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998f9"
+    },
+    "name": "Pizza-Fugazzeta",
+    "description": "Pizza con cebolla, queso y un toque de aceitunas.",
+    "price": 12.49,
+    "image": "https://example.com/images/pizza_fugazzeta.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998fa"
+    },
+    "name": "Empanada-Carne",
+    "description": "Empanada rellena de carne con especias y cebolla.",
+    "price": 2.99,
+    "image": "https://example.com/images/empanada_carne.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998fb"
+    },
+    "name": "Empanada-Pollo",
+    "description": "Empanada rellena de pollo con condimentos tradicionales.",
+    "price": 2.79,
+    "image": "https://example.com/images/empanada_pollo.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998fc"
+    },
+    "name": "Empanada-Jamón y Queso",
+    "description": "Empanada rellena de jamón y queso, una combinación clásica.",
+    "price": 3.29,
+    "image": "https://example.com/images/empanada_jamon_queso.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998fd"
+    },
+    "name": "Empanada-Humita",
+    "description": "Empanada con un relleno de maíz y queso.",
+    "price": 3.49,
+    "image": "https://example.com/images/empanada_humita.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998fe"
+    },
+    "name": "Empanada-Fatay",
+    "description": "Empanada de carne con un toque de especias exóticas.",
+    "price": 3.99,
+    "image": "https://example.com/images/empanada_fatay.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b998ff"
+    },
+    "name": "Empanada-Maranata",
+    "description": "Empanada rellena con carne, huevo y condimentos secretos.",
+    "price": 3.59,
+    "image": "https://example.com/images/empanada_maranata.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99900"
+    },
+    "name": "Tarta-Jamón y Queso",
+    "description": "Tarta con una mezcla de jamón, queso y una base crujiente.",
+    "price": 7.99,
+    "image": "https://example.com/images/tarta_jamon_queso.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99901"
+    },
+    "name": "Tarta-Verdura",
+    "description": "Tarta ligera y saludable con una mezcla de verduras frescas.",
+    "price": 6.99,
+    "image": "https://example.com/images/tarta_verdura.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99902"
+    },
+    "name": "Tarta-Jamón, Queso, Tomate y Huevo",
+    "description": "Tarta rellena de jamón, queso, tomate y huevo.",
+    "price": 8.49,
+    "image": "https://example.com/images/tarta_jamon_queso_tomate_huevo.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99903"
+    },
+    "name": "Tarta-Calabaza",
+    "description": "Tarta rellena de calabaza con un toque de especias.",
+    "price": 7.49,
+    "image": "https://example.com/images/tarta_calabaza.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99904"
+    },
+    "name": "Tarta-Calzone Napolitano",
+    "description": "Tarta estilo calzone con relleno napolitano.",
+    "price": 8.99,
+    "image": "https://example.com/images/tarta_calzone_napolitano.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99905"
+    },
+    "name": "Tarta-Pollo",
+    "description": "Tarta rellena de pollo con un toque de especias.",
+    "price": 7.99,
+    "image": "https://example.com/images/tarta_pollo.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99906"
+    },
+    "name": "Pasta-Tallarines",
+    "description": "Pasta fresca tipo tallarines, ideal con tu salsa favorita.",
+    "price": 5.99,
+    "image": "https://example.com/images/pasta_tallarines.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99907"
+    },
+    "name": "Pasta-Ravioles",
+    "description": "Ravioles rellenos con queso ricotta, perfectos con salsa.",
+    "price": 6.99,
+    "image": "https://example.com/images/pasta_ravioles.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99908"
+    },
+    "name": "Pasta-Sorrentinos",
+    "description": "Sorrentinos rellenos de jamón y queso, una delicia italiana.",
+    "price": 7.49,
+    "image": "https://example.com/images/pasta_sorrentinos.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99909"
+    },
+    "name": "Pasta-Lasagna",
+    "description": "Lasagna clásica con carne, salsa bechamel y mozzarella.",
+    "price": 8.99,
+    "image": "https://example.com/images/pasta_lasagna.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9990a"
+    },
+    "name": "Pasta-Gnoquis",
+    "description": "Ñoquis caseros con salsa de tomate y queso.",
+    "price": 6.49,
+    "image": "https://example.com/images/pasta_gnoquis.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9990b"
+    },
+    "name": "Pasta-Pastel de Papas",
+    "description": "Pastel de papas casero, relleno de carne y huevo.",
+    "price": 7.99,
+    "image": "https://example.com/images/pasta_pastel_de_papas.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9990c"
+    },
+    "name": "Salsa-Roja",
+    "description": "Salsa roja de tomate y especias, ideal para pasta o pizza.",
+    "price": 2.49,
+    "image": "https://example.com/images/salsa_roja.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9990d"
+    },
+    "name": "Salsa-Blanca",
+    "description": "Salsa blanca cremosa, perfecta para pasta.",
+    "price": 2.99,
+    "image": "https://example.com/images/salsa_blanca.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9990e"
+    },
+    "name": "Salsa-Mixta",
+    "description": "Combinación de salsa roja y blanca, un sabor único.",
+    "price": 3.49,
+    "image": "https://example.com/images/salsa_mixta.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9990f"
+    },
+    "name": "Salsa-Bolognesa",
+    "description": "Salsa de carne con tomate, ideal para acompañar pastas.",
+    "price": 3.79,
+    "image": "https://example.com/images/salsa_bolognesa.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99910"
+    },
+    "name": "Pollo-Cuarto",
+    "description": "Cuarto de pollo asado, jugoso y sabroso.",
+    "price": 5.99,
+    "image": "https://example.com/images/pollo_cuarto.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99911"
+    },
+    "name": "Pollo-Medio",
+    "description": "Medio pollo asado, ideal para compartir.",
+    "price": 9.99,
+    "image": "https://example.com/images/pollo_medio.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99912"
+    },
+    "name": "Pollo-Entero",
+    "description": "Pollo entero asado, jugoso y lleno de sabor.",
+    "price": 14.99,
+    "image": "https://example.com/images/pollo_entero.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99913"
+    },
+    "name": "Asado",
+    "description": "Asado a la parrilla, con un sabor ahumado delicioso.",
+    "price": 15.99,
+    "image": "https://example.com/images/asado.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99914"
+    },
+    "name": "Chorizo",
+    "description": "Chorizo parrillero, perfecto para acompañar con pan.",
+    "price": 3.99,
+    "image": "https://example.com/images/chorizo.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99915"
+    },
+    "name": "Parrillada",
+    "description": "Parrillada mixta con carne y embutidos.",
+    "price": 19.99,
+    "image": "https://example.com/images/parrillada.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99916"
+    },
+    "name": "Porcion Papas Fritas",
+    "description": "Porción de papas fritas crujientes, ideal como acompañamiento.",
+    "price": 2.49,
+    "image": "https://example.com/images/porcion_papas_fritas.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99917"
+    },
+    "name": "Bomba de Papa",
+    "description": "Bolitas de papa rellenas de queso, crujientes por fuera.",
+    "price": 3.19,
+    "image": "https://example.com/images/bomba_de_papa.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99918"
+    },
+    "name": "Croqueta de Verdura",
+    "description": "Croquetas de verduras, crujientes por fuera y suaves por dentro.",
+    "price": 3.29,
+    "image": "https://example.com/images/croqueta_de_verdura.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b99919"
+    },
+    "name": "Milanesa-Común",
+    "description": "Milanesa empanada y frita, clásica y deliciosa.",
+    "price": 5.99,
+    "image": "https://example.com/images/milanesa_comun.jpg"
+  },
+  {
+    "_id": {
+      "$oid": "67e003949fa478e211b9991a"
+    },
+    "name": "Milanesa-Napolitana",
+    "description": "Milanesa napolitana con salsa de tomate y queso gratinado.",
+    "price": 6.99,
+    "image": "https://example.com/images/milanesa_napolitana.jpg"
+  }
+]

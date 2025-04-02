@@ -1,17 +1,17 @@
-/* .ordersListContainer{
-    border: 5px solid var(--color5);
-    margin: 1rem;
-    text-align: center;
-    border-radius: 10px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.ordersListContainer {
+  border: 5px solid var(--color5);
+  margin: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.listTitle{
-    margin: 1rem;
-    background-color: var(--color2);
-    padding: 1rem;
-    border-radius: 50px;
-} */
+.listTitle {
+  margin: 1rem;
+  background-color: var(--color2);
+  padding: 1rem;
+  border-radius: 50px;
+}

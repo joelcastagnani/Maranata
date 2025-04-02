@@ -1,0 +1,93 @@
+.modalOrders {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modalOrders-content {
+  max-width: 80%;
+  width: 90vw;
+  max-height: 80vh;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.closeOrders {
+  font-size: 30px;
+  cursor: pointer;
+  float: right;
+}
+
+.ordersTable th,
+.ordersTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.ordersTable th {
+  background-color: #f4f4f4;
+}
+.ordersTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.ordersTable tr:hover {
+  background-color: #ddd;
+}
+
+.ordersTableContainer {
+  max-height: 50vh;
+  overflow-y: auto; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.loadMoreButton {
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  align-self: center;
+}
+
+.loadMoreButton:hover {
+  background-color: #45a049;
+}
+
+
+.loadMoreButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+
+
+
+
+.sortButton{
+  border:none;
+}
+
+
+
+
+
+

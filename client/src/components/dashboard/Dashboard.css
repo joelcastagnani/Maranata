@@ -1,12 +1,13 @@
 .dashBackgroundContainer {
   background-color: #854f6c;
   border: 15px solid var(--color1);
-  border-radius: 20px;
+  border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
   width: 60vw;
+  margin-top: 1rem;
 }
 .dashFormContainer {
   border-radius: 5px;
@@ -29,24 +30,25 @@
   right: 0;
   border: none;
 }
-.dashOptionsButton{
+.dashOptionsButton {
   background-color: #474b4e;
   border: none;
   cursor: pointer;
   color: var(--color1);
-} 
+}
 .loginForm {
-  height: 50%;
+  height: 40%;
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
   left: 5%;
-  bottom: 1%;
+  bottom: 5%;
 }
-.registrateForm{
+.registrateForm {
   width: 90%;
+  height: 40%;
   position: absolute;
   left: 5%;
   bottom: 5%;
@@ -69,7 +71,7 @@
   border: none;
   padding-left: 10px;
 }
-.dashSubmitLogin{
+.dashSubmitLogin {
   width: 100%;
   height: 30px;
   border-radius: 40px;
@@ -78,7 +80,7 @@
   background-color: #dfb6b2;
   margin-top: 20.2%;
 }
-.submitRegister{
+.submitRegister {
   width: 100%;
   height: 30px;
   border-radius: 40px;

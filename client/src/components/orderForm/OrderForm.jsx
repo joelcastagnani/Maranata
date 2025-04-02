@@ -1,23 +1,46 @@
 import React, { useState } from "react";
 import "./OrderForm.css";
+import Popup from "../popup/Popup";
+import OrderSummaryModal from "../orderSumary/OrderSummary.jsx";
+import TicketModal from "../ticketModal/Ticketmodal.jsx";
 
 function OrderForm() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSummaryOpen, setIsSummaryOpen] = useState(false); // Estado para modal de resumen
+  const [orderItems, setOrderItems] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     address: "",
     phone: "",
-    order: "",
   });
+  const [message, setMessage] = useState("");
+  const [isTicketOpen, setIsTicketOpen] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !formData.name ||
+      !formData.address ||
+      !formData.phone ||
+      orderItems.length === 0
+    ) {
+      setMessage(
+        "Por favor, completa todos los campos y selecciona al menos un producto."
+      );
+      console.log("❌ Error: Faltan datos en el formulario.");
+      return;
+    }
+
+    const orderData = {
+      name: formData.name,
+      address: formData.address,
+      phone: formData.phone,
+      order: orderItems,
+    };
 
     try {
       const response = await fetch("http://localhost:8080/api/orders", {
@@ -25,26 +48,26 @@ function OrderForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(orderData),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        alert("Pedido creado exitosamente: " + JSON.stringify(data));
-        setFormData({ nombre: "", direccion: "", telefono: "", pedido: "" });
-      } else {
-        const error = await response.json();
-        alert("Error al crear el pedido: " + error.message);
+      if (!response.ok) {
+        throw new Error("Error al enviar la orden");
       }
+
+      setMessage("Orden enviada con éxito 🎉");
+      setFormData({ name: "", address: "", phone: "" });
+      setOrderItems([]);
     } catch (error) {
-      alert("Error en la conexión con el servidor: " + error.message);
+      setMessage("Hubo un problema al enviar la orden.");
+      console.error(error);
     }
   };
 
   return (
-    <form className="formContainer" onSubmit={handleSubmit}>
+    <form className="orderFormContainer" onSubmit={handleSubmit}>
       <div className="inputsContainer">
-        <div className="input">
+        <div className="orderFormInput">
           <label htmlFor="name">Nombre:</label>
           <input
             className="inputBar"
@@ -52,12 +75,12 @@ function OrderForm() {
             id="name"
             name="name"
             placeholder="Pedido a nombre de:"
-            value={formData.name || ""}
-            onChange={handleChange}
             required
+            value={formData.name}
+            onChange={handleChange}
           />
         </div>
-        <div className="input">
+        <div className="orderFormInput">
           <label htmlFor="address">Dirección:</label>
           <input
             className="inputBar"
@@ -65,12 +88,12 @@ function OrderForm() {
             id="address"
             name="address"
             placeholder="Dirección"
-            value={formData.address || ""}
-            onChange={handleChange}
             required
+            value={formData.address}
+            onChange={handleChange}
           />
         </div>
-        <div className="input">
+        <div className="orderFormInput">
           <label htmlFor="phone">Teléfono:</label>
           <input
             className="inputBar"
@@ -78,31 +101,66 @@ function OrderForm() {
             id="phone"
             name="phone"
             placeholder="Teléfono"
-            value={formData.phone || ""}
-            onChange={handleChange}
             required
+            value={formData.phone}
+            onChange={handleChange}
           />
         </div>
-        <div className="input">
-          <label htmlFor="order">Pedido:</label>
-          <textarea
-            className="inputBar"
-            id="order"
-            name="order"
-            placeholder="Detalles del pedido"
-            rows="4"
-            value={formData.order || ""}
-            onChange={handleChange}
-            required
-          ></textarea>
+        <div className="orderFormInput">
+          <label>Pedido:</label>
+          {orderItems.length > 0 ? (
+            <div className="button-group">
+              <button
+                className="editButton"
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Editar Pedido
+              </button>
+              <button
+                className="editButton"
+                type="button"
+                onClick={() => setIsTicketOpen(true)}
+              >
+                Generar ticket
+              </button>
+            </div>
+          ) : (
+            <button
+              className="inputBarButton"
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Seleccionar productos
+            </button>
+          )}
         </div>
       </div>
 
-      <button className="submit" type="submit">
+      <button className="orderFormSubmit" type="submit">
         Enviar
       </button>
+
+      <Popup
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        orderItems={orderItems}
+        setOrderItems={setOrderItems}
+      />
+
+      <OrderSummaryModal
+        isOpen={isSummaryOpen}
+        onClose={() => setIsSummaryOpen(false)}
+        orderItems={orderItems}
+      />
+
+      <TicketModal
+        isOpen={isTicketOpen}
+        onClose={() => setIsTicketOpen(false)}
+        orderData={{ ...formData, order: orderItems }}
+      />
     </form>
   );
-};
+}
 
 export default OrderForm;

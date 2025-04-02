@@ -1,0 +1,68 @@
+client
+	node_modules
+	public
+		index.html
+		vite.svg
+	src
+		assets
+			react.svg
+		components
+			dashboard	|		
+			homepage	|
+			navbar		|
+			order		|
+			ordersList	|todos estos contienen su respectivo .jsx y .css
+			titulo		|
+			orderForm	|
+			product		|
+			productForm	|
+			productList	|
+			title		|		
+		utils
+			api.js
+			axiosConfig.js
+		App.jsx
+		App.css
+		index.css
+		main.jsx
+	.env
+	.gitignore
+	eslint.config.js
+	package-lock.json
+	package.json
+	index.html
+	vite.config.js
+node_modules
+src
+	controllers
+		orders.controller.js
+		products.controller.js
+		users.controller.js
+	dao
+		models
+			order.model.js
+			product.model.js
+			user.model.js
+	middlewares
+		auth.middleware.js
+	routes
+		index.router.js
+		orders.router.js
+		products.router.js
+		auth.router.js
+	services
+		orders.service.js
+		products.service.js
+	utils
+		args.utils.js
+		dbConnect.util.js
+		env.util.js
+		mocks.util.js
+.env.dev
+.env.example
+.env.prod
+.env.test
+.gitignore
+app.js
+package-lock.json
+package.json

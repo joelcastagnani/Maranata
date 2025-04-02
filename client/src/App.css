@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  list-style: none;
 }
 :root {
   --color1: #fbe4d8;
@@ -14,9 +15,7 @@
 html {
   display: flex;
   justify-content: center;
-  align-items: center;
   background-color: black;
-  height: 100vh;
 }
 .mainFont {
   font-family: "DM Sans", serif;
@@ -32,14 +31,15 @@ html {
   font-size: 40px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
-.homeAppContainer{
+.appContainer{
   background-color: #854f6c;
   border: 15px solid var(--color1);
   border-radius: 20px;
-  height: 80vh;
   width: 60vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 

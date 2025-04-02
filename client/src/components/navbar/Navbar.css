@@ -1,5 +1,5 @@
-/* .navbar {
-  border: 5px solid var(--color5);
+ .navbar {
+  border: 5px solid var(--color1);
   height: 70px;
   display: flex;
   justify-content: space-evenly;
@@ -23,4 +23,4 @@
 .navbar-link:hover{
   background-color: var(--color2);
   transition: 0.8s;
-} */
+} 

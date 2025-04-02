@@ -21,28 +21,3 @@ api.interceptors.request.use(
 );
 
 export default api; // Exporta la instancia de axios configurada
-
-
-
-
-// import axios from "axios";
-
-// const axiosConfig = axios.create({
-//   baseURL: "http://localhost:8080",//pude ser que aca haya un error
-// });
-
-// // Agregar el token a las solicitudes si existe
-// axiosConfig.interceptors.request.use(
-//   (config) => {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       config.headers['Authorization'] = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
-
-// export default axiosConfig;

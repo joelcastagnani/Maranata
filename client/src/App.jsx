@@ -18,14 +18,16 @@ const App = () => {
   return (
     <BrowserRouter>
       <ToastContainer position="top-right" autoClose={1000} />
+
       <Routes>
         <Route path="/" element={<Dashboard />} />
 
         <Route
           path="/homepage"
           element={
-            <div className="homeAppContainer">
+            <div className="appContainer">
               <Title />
+              <Navbar />
               <HomePage />
             </div>
           }
@@ -34,15 +36,48 @@ const App = () => {
         <Route
           path="/orderform"
           element={
-            <div className="orderFromAppContainer">
+            <div className="appContainer">
               <Title />
+              <Navbar />
               <OrderForm />
             </div>
           }
         />
 
+        <Route
+          path="/orders"
+          element={
+            <div className="appContainer">
+              <Title />
+              <Navbar />
+              <OrdersList />
+            </div>
+          }
+        />
 
+        <Route
+          path="/productForm"
+          element={
+            <div className="appContainer">
+              <Title />
+              <Navbar />
+              <ProductForm />
+            </div>
+          }
+        />
+
+        <Route
+          path="/productsList"
+          element={
+            <div className="appContainer">
+              <Title />
+              <Navbar />
+              <ProductsList />
+            </div>
+          }
+        />
       </Routes>
+
     </BrowserRouter>
   );
 };
@@ -52,27 +87,10 @@ export default App;
 // <Router>
 
 // <Routes>
-//   <Route path="/" element={<Dashboard />} />
 
-//   
-//   <Route
-//     path="/orders"
-//     element={
-//       <>
-//         <Navbar />
-//         <OrdersList />
-//       </>
-//     }
-//   />
-//   <Route
-//     path="/productForm"
-//     element={
-//       <>
-//         <Navbar />
-//         <ProductForm />
-//       </>
-//     }
-//   />
+//
+//
+
 //   <Route
 //     path="/products"
 //     element={
