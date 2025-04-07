@@ -10,6 +10,7 @@ import authRouter from "./src/routers/auth.router.js";
 import dotenv from "dotenv";
 import ordersRouter from "./src/routers/orders.router.js";
 import productsRouter from "./src/routers/products.router.js";
+import clientRouter from "./src/routers/client.router.js";
 
 dotenv.config();
 
@@ -23,7 +24,6 @@ const __dirname = path.dirname(__filename);
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-
 
 const ready = async () => {
   const mode = argsUtils.mode;
@@ -43,8 +43,9 @@ server.use(
 // Rutas de la API
 server.use("/api", router);
 server.use("/api/auth", authRouter);
-server.use('/api/orders', ordersRouter);
-server.use('/api/products', productsRouter);
+server.use("/api/orders", ordersRouter);
+server.use("/api/products", productsRouter);
+server.use("/api/clients", clientRouter);
 
 // Servir archivos estáticos después de las rutas de la API
 server.use(express.static(path.join(__dirname, "client", "dist")));

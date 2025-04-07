@@ -98,76 +98,69 @@ const Dashboard = () => {
           </button>
         </div>
 
-        {/* Formulario Login */}
-        {isLoginActive && (
-          <form onSubmit={handleLogin} className="notForm loginForm showForm">
-            <div className="inputsForm">
-              <input
-                className="input"
-                type="email"
-                placeholder="Correo electrónico"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <input
-                className="input"
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <input className="dashSubmitLogin" type="submit" value="Ingresar" />
-          </form>
-        )}
+          {/* Formulario Login */}
+          {isLoginActive && (
+            <form onSubmit={handleLogin} className="notForm form showForm">
+              <div className="inputsForm">
+                <input
+                  className="input"
+                  type="email"
+                  placeholder="Correo electrónico"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <input className="dashSubmit" type="submit" value="Ingresar" />
+            </form>
+          )}
 
-        {/* Formulario Registrarse */}
-        {!isLoginActive && (
-          <form
-            onSubmit={handleSubmit}
-            className="notForm registrateForm showForm"
-          >
-            <div className="inputsForm">
-              <input
-                className="input"
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-                placeholder="Nombre de usuario: "
-              />
-              <input
-                className="input"
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="Email: "
-              />
-              <input
-                className="input"
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                placeholder="Contraseña: "
-              />
-            </div>
-            <input
-              className="submitRegister"
-              type="submit"
-              value="Registrarse"
-            />
-          </form>
-        )}
+          {/* Formulario Registrarse */}
+          {!isLoginActive && (
+            <form onSubmit={handleSubmit} className="notForm form showForm">
+              <div className="inputsForm">
+                <input
+                  className="input"
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                  placeholder="Nombre de usuario: "
+                />
+                <input
+                  className="input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Email: "
+                />
+                <input
+                  className="input"
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  placeholder="Contraseña: "
+                />
+              </div>
+              <input className="dashSubmit" type="submit" value="Registrarse" />
+            </form>
+          )}
       </div>
     </div>
   );
