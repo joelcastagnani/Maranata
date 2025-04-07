@@ -1,4 +1,5 @@
 import Order from "../dao/models/order.model.js";
+import Client from "../dao/models/client.model.js";
 import {
   create,
   createMock,
@@ -11,10 +12,17 @@ import {
 const createOrder = async (req, res) => {
   try {
     const data = req.body;
-    const one = await create(data);
-    return res.status(201).json({ message: "Created!", response: one });
+    const newOrder = await create(data);
+    return res.status(201).json({
+      message: "Orden creada correctamente ✅",
+      response: newOrder,
+    });
   } catch (error) {
-    return res.status(500).json({ error });
+    console.error("❌ Error en createOrder:", error.message);
+    return res.status(500).json({
+      message: "Error al crear la orden",
+      error: error.message,
+    });
   }
 };
 const readOneOrder = async (req, res, next) => {
@@ -43,7 +51,6 @@ const readOrders = async (req, res) => {
     });
   }
 };
-
 const createMockOrder = async (req, res) => {
   try {
     const one = await createMock();
@@ -90,5 +97,3 @@ export {
   deleteOrder,
   updateOrder,
 };
-
-

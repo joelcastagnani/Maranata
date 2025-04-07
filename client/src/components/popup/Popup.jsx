@@ -23,8 +23,6 @@ function Popup({ isOpen, onClose, orderItems, setOrderItems }) {
   }, [isOpen]);
 
   const handleAddProduct = (product) => {
-    console.log("🛒 Agregando producto:", product);
-
     setOrderItems((prevOrder) => {
       const existingItem = prevOrder.find(
         (item) => item.productId === product._id
@@ -41,8 +39,8 @@ function Popup({ isOpen, onClose, orderItems, setOrderItems }) {
           {
             productId: product._id,
             name: product.name,
-            quantity: 1,
             price: product.price,
+            quantity: 1,
             description: product.description,
           },
         ];
@@ -59,7 +57,6 @@ function Popup({ isOpen, onClose, orderItems, setOrderItems }) {
   return (
     <div className="modalPopup">
       <div className="modalPopup-content">
-
         <span className="closePopup" onClick={onClose}>
           &times;
         </span>
@@ -103,12 +100,21 @@ function Popup({ isOpen, onClose, orderItems, setOrderItems }) {
             <div className="orderPopup-summary">
               <h3>Productos en el pedido:</h3>
               <ul>
-                {orderItems.map((item) => (
-                  <li key={item.productId}>
-                    {item.name} - {item.quantity} unidad(es) - $
-                    {(item.price * item.quantity).toFixed(2)}
-                  </li>
-                ))}
+                {orderItems.map((item) => {
+                  const product = products.response.find(
+                    (p) => p._id === item.productId
+                  );
+                  return (
+                    <li key={item.productId}>
+                      {product?.name || "Producto desconocido"} -{" "}
+                      {item.quantity} unidad(es) - $
+                      {(product?.price
+                        ? product.price * item.quantity
+                        : 0
+                      ).toFixed(2)}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}
@@ -117,7 +123,6 @@ function Popup({ isOpen, onClose, orderItems, setOrderItems }) {
             Pedido listo
           </button>
         </div>
-
       </div>
     </div>
   );

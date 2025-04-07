@@ -20,8 +20,9 @@ const schema = new Schema(
   {
     name: { type: String, index: true, required: true },
     address: { type: String, required: true },
-    order: { type: [orderItemSchema], default: [] },
     phone: { type: String, required: true },
+    client: { type: Schema.Types.ObjectId, ref: "Client" },
+    order: { type: [orderItemSchema], default: [] },
     totalPrice: { 
       type: Number, 
       required: true, 
@@ -31,6 +32,7 @@ const schema = new Schema(
   },
   { timestamps: true }
 );
+
 
 schema.plugin(mongoosePaginate);
 

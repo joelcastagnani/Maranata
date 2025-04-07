@@ -1,39 +1,27 @@
 import { Schema, model } from "mongoose";
 
-const collection = "client";
-
 const clientSchema = new Schema({
   name: {
     type: String,
     required: true,
     trim: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true,
-  },
   phone: {
     type: String,
+    trim: true,
   },
   address: {
-    street: String,
-    city: String,
-    state: String,
-    zipCode: String,
+    type: String,
+    trim: true,
+    required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref: "Order",
+    default: [],
+  }],
 });
 
-const Client = model(collection, clientSchema);
+const Client = model("Client", clientSchema);
 
 export default Client;

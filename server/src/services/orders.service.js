@@ -1,4 +1,6 @@
 import Order from "../dao/models/order.model.js";
+import Client from "../dao/models/client.model.js";
+import Product from "../dao/models/product.model.js";
 import { createMockOrder } from "../utils/mocks.util.js";
 
 const create = async (data) => {
@@ -7,32 +9,75 @@ const create = async (data) => {
       throw new Error("La orden debe contener al menos un producto.");
     }
 
-    data.totalPrice = data.order.reduce((total, item) => {
-      if (!item.quantity || !item.price) {
-        throw new Error(
-          "Cada producto debe tener una cantidad y un precio válido."
-        );
+    // Obtener los precios directamente desde la base de datos
+    const productIds = data.order.map((item) => item.productId);
+    const products = await Product.find({ _id: { $in: productIds } });
+
+    if (products.length !== data.order.length) {
+      throw new Error("Uno o más productos no existen.");
+    }
+
+    // Calcular totalPrice con los precios actuales
+    let totalPrice = 0;
+    const enrichedOrder = data.order.map((item) => {
+      const product = products.find((p) => p._id.toString() === item.productId);
+      const price = product.price;
+      totalPrice += item.quantity * price;
+      return {
+        productId: item.productId,
+        quantity: item.quantity,
+        price,
+      };
+    });
+
+    console.log("🧾 Datos recibidos para cliente:", {
+      name: data.name,
+      phone: data.phone,
+      address: data.address,
+    });
+
+    const newOrder = await Order.create({
+      order: enrichedOrder,
+      totalPrice,
+      name: data.name,
+      address: data.address,
+      phone: data.phone,
+    });
+
+    // Buscar o crear cliente
+    let client = await Client.findOne({ address: data.address });
+
+    if (!client) {
+      if (!data.name || !data.address) {
+        throw new Error("Faltan datos para crear el cliente.");
       }
-      return total + item.quantity * item.price;
-    }, 0);
 
-    const one = await Order.create(data);
+      client = await Client.create({
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
+        orders: [newOrder._id], // Asociamos directamente
+      });
+    } else {
+      client.orders.push(newOrder._id);
+      await client.save();
+    }
 
-    console.log("✅ Orden creada con éxito:", one);
-    return one;
+    console.log("✅ Pedido y cliente procesados correctamente");
+    return newOrder;
   } catch (error) {
-    console.error("❌ Error al crear el pedido:", error.message);
+    console.error("❌ Error al crear la orden:", error.message);
     throw new Error("Error creando el pedido. Verifica los datos enviados.");
   }
 };
+
 const read = async (page) => {
   const all = await Order.paginate(
     {},
-    { page, sort: { name: 1 }, select: "-__v -updatedAt" } 
+    { page, sort: { name: 1 }, select: "-__v -updatedAt" }
   );
   return all;
 };
-
 const createMock = async () => {
   const data = createMockOrder();
   const one = await Order.create(data);
