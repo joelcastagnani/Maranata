@@ -7,12 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
   const [isLoginActive, setIsLoginActive] = useState(true);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
     password: "",
   });
 
@@ -31,12 +30,18 @@ const Dashboard = () => {
     try {
       // Hacer la solicitud POST al backend
       const response = await axios.post("/api/auth/login", {
-        email,
+        username,
         password,
       });
 
       if (response.status === 200) {
         // Si el login es exitoso, guardar el token en el localStorage
+
+        toast.success("Usuario logeado con exito!", {
+          position: "top-right",
+          autoClose: 2000,
+        });
+
         localStorage.setItem("token", response.data.token);
 
         // Redirigir a la página de inicio o dashboard
@@ -63,14 +68,20 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       // Hacemos la solicitud POST al backend
+      const { username, password } = formData;
       const response = await axios.post("/api/auth/register", formData);
       if (response.status === 201) {
-        alert("Usuario registrado con éxito.");
+        toast.success("Usuario registrado con exito!", {
+          position: "top-right",
+          autoClose: 2000,
+        });
         setIsLoginActive(true);
       }
     } catch (error) {
-      console.error("Error en el registro:", error);
-      alert("Hubo un error al registrar el usuario.");
+      toast.error("Error en el registro.", {
+        position: "top-right",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -98,69 +109,59 @@ const Dashboard = () => {
           </button>
         </div>
 
-          {/* Formulario Login */}
-          {isLoginActive && (
-            <form onSubmit={handleLogin} className="notForm form showForm">
-              <div className="inputsForm">
-                <input
-                  className="input"
-                  type="email"
-                  placeholder="Correo electrónico"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <input
-                  className="input"
-                  type="password"
-                  placeholder="Contraseña"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <input className="dashSubmit" type="submit" value="Ingresar" />
-            </form>
-          )}
+        {/* Formulario Login */}
+        {isLoginActive && (
+          <form onSubmit={handleLogin} className="notForm form showForm">
+            <div className="inputsForm">
+              <input
+                className="input"
+                type="text"
+                placeholder="Nombre de usuario"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <input
+                className="input"
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <input className="dashSubmit" type="submit" value="Ingresar" />
+          </form>
+        )}
 
-          {/* Formulario Registrarse */}
-          {!isLoginActive && (
-            <form onSubmit={handleSubmit} className="notForm form showForm">
-              <div className="inputsForm">
-                <input
-                  className="input"
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                  placeholder="Nombre de usuario: "
-                />
-                <input
-                  className="input"
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="Email: "
-                />
-                <input
-                  className="input"
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  placeholder="Contraseña: "
-                />
-              </div>
-              <input className="dashSubmit" type="submit" value="Registrarse" />
-            </form>
-          )}
+        {/* Formulario Registrarse */}
+        {!isLoginActive && (
+          <form onSubmit={handleSubmit} className="notForm form showForm">
+            <div className="inputsForm">
+              <input
+                className="input"
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+                placeholder="Nombre de usuario: "
+              />
+              <input
+                className="input"
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Contraseña: "
+              />
+            </div>
+            <input className="dashSubmit" type="submit" value="Registrarse" />
+          </form>
+        )}
       </div>
     </div>
   );

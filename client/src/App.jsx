@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,8 +11,9 @@ import Title from "./components/title/Title.jsx";
 import OrdersList from "./components/ordersList/OrdersList.jsx";
 import ProductForm from "./components/productForm/Productform.jsx";
 import ProductsList from "./components/productsList/ProductsList.jsx";
-import Main from "./main.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute.jsx";
+import UserInfo from "./components/userInfo/UserInfo.jsx";
 
 const App = () => {
   return (
@@ -20,86 +21,82 @@ const App = () => {
       <ToastContainer position="top-right" autoClose={1000} />
 
       <Routes>
+        {/* Ruta pública */}
         <Route path="/" element={<Dashboard />} />
 
+        {/* Rutas protegidas */}
         <Route
           path="/homepage"
           element={
-            <div className="appContainer">
-              <Title />
-              <Navbar />
-              <HomePage />
-            </div>
+            <ProtectedRoute>
+              <div className="appContainer">
+                <UserInfo />
+                <Title />
+                <Navbar />
+                <HomePage />
+              </div>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/orderform"
           element={
-            <div className="appContainer">
-              <Title />
-              <Navbar />
-              <OrderForm />
-            </div>
+            <ProtectedRoute>
+              <div className="appContainer">
+                <UserInfo />
+                <Title />
+                <Navbar />
+                <OrderForm />
+              </div>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/orders"
           element={
-            <div className="appContainer">
-              <Title />
-              <Navbar />
-              <OrdersList />
-            </div>
+            <ProtectedRoute>
+              <div className="appContainer">
+                <UserInfo />
+                <Title />
+                <Navbar />
+                <OrdersList />
+              </div>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/productForm"
           element={
-            <div className="appContainer">
-              <Title />
-              <Navbar />
-              <ProductForm />
-            </div>
+            <ProtectedRoute>
+              <div className="appContainer">
+                <UserInfo />
+                <Title />
+                <Navbar />
+                <ProductForm />
+              </div>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/productsList"
           element={
-            <div className="appContainer">
-              <Title />
-              <Navbar />
-              <ProductsList />
-            </div>
+            <ProtectedRoute>
+              <div className="appContainer">
+                <UserInfo />
+                <Title />
+                <Navbar />
+                <ProductsList />
+              </div>
+            </ProtectedRoute>
           }
         />
       </Routes>
-
     </BrowserRouter>
   );
 };
 
 export default App;
-
-// <Router>
-
-// <Routes>
-
-//
-//
-
-//   <Route
-//     path="/products"
-//     element={
-//       <>
-//         <Navbar />
-//         <ProductsList />
-//       </>
-//     }
-//   />
-// </Routes>
-
-// </Router>

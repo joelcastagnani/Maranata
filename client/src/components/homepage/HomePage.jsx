@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OrdersModal from "../ordersModal/OrdersModal"; // Importa el modal
 import "./HomePage.css";
 
 const HomePage = () => {
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="homePageContainer roboto-general">
@@ -21,7 +22,10 @@ const HomePage = () => {
       </div>
 
       {/* Modal de pedidos */}
-      <OrdersModal isOpen={isOrdersOpen} onClose={() => setIsOrdersOpen(false)} />
+      <OrdersModal
+        isOpen={isOrdersOpen}
+        onClose={() => setIsOrdersOpen(false)}
+      />
     </div>
   );
 };

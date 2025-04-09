@@ -4,7 +4,7 @@ import User from "../dao/models/user.model.js";
 
 export const register = async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const { username, password } = req.body;
 
     // Verificar si el usuario ya existe
     const existingUser = await User.findOne({ username });
@@ -13,7 +13,9 @@ export const register = async (req, res) => {
 
     // Hashear la contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, username, password: hashedPassword });
+    const user = new User({ username, password: hashedPassword });
+
+    console.log(user);
 
     await user.save();
     res.status(201).json({ message: "Usuario registrado exitosamente" });
@@ -23,32 +25,33 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body; 
-
-  console.log({email, password});
+  const { username, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res
         .status(400)
         .json({ message: "Usuario o contraseña incorrectos" });
     }
-    
-    
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    
 
     if (!isPasswordValid) {
       return res
         .status(400)
         .json({ message: "Usuario o contraseña incorrectos" });
     }
-    
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        username: user.username,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
 
     res.json({ token });
   } catch (error) {

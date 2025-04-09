@@ -7,17 +7,17 @@ import { login } from "../controllers/users.controller.js";
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
     // Verificamos si el usuario ya existe
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ username });
     if (userExists) {
-      return res.status(400).json({ message: "El correo ya está registrado." });
+      return res.status(400).json({ message: "El usuario ya está registrado." });
     }
 
     // Creamos el nuevo usuario
-    const newUser = new User({ username, email, password });
+    const newUser = new User({ username, password });
     await newUser.save();
 
     res.status(201).json({ message: "Usuario registrado con éxito." });
