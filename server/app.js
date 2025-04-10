@@ -13,6 +13,7 @@ import productsRouter from "./src/routers/products.router.js";
 import clientRouter from "./src/routers/client.router.js";
 
 dotenv.config();
+console.log("🔐 JWT_SECRET cargado:", process.env.JWT_SECRET);
 
 const server = express();
 const port = env.PORT || 8080;

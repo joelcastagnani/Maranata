@@ -5,7 +5,7 @@ import TicketModal from "../ticketModal/Ticketmodal.jsx";
 
 function OrderForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSummaryOpen, setIsSummaryOpen] = useState(false); // Estado para modal de resumen
+  const [isSummaryOpen, setIsSummaryOpen] = useState(false);
   const [orderItems, setOrderItems] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +18,7 @@ function OrderForm() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,10 +43,14 @@ function OrderForm() {
     };
 
     try {
+      const token = localStorage.getItem("token");
+      console.log("🔐 Token que se va a enviar:", token);
+
       const response = await fetch("http://localhost:8080/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // <-- Token JWT aquí
         },
         body: JSON.stringify(orderData),
       });
@@ -145,12 +150,6 @@ function OrderForm() {
         onClose={() => setIsModalOpen(false)}
         orderItems={orderItems}
         setOrderItems={setOrderItems}
-      />
-
-      <OrderSummaryModal
-        isOpen={isSummaryOpen}
-        onClose={() => setIsSummaryOpen(false)}
-        orderItems={orderItems}
       />
 
       <TicketModal

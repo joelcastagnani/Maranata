@@ -2,6 +2,8 @@ import Order from "../dao/models/order.model.js";
 import Client from "../dao/models/client.model.js";
 import Product from "../dao/models/product.model.js";
 import { createMockOrder } from "../utils/mocks.util.js";
+import ShiftReport from "../dao/models/shiftReport.model.js";
+import { getCurrentShift } from "../utils/getCurrentShift.js";
 
 const create = async (data) => {
   try {
@@ -9,7 +11,6 @@ const create = async (data) => {
       throw new Error("La orden debe contener al menos un producto.");
     }
 
-    // Obtener los precios directamente desde la base de datos
     const productIds = data.order.map((item) => item.productId);
     const products = await Product.find({ _id: { $in: productIds } });
 
@@ -17,7 +18,6 @@ const create = async (data) => {
       throw new Error("Uno o más productos no existen.");
     }
 
-    // Calcular totalPrice con los precios actuales
     let totalPrice = 0;
     const enrichedOrder = data.order.map((item) => {
       const product = products.find((p) => p._id.toString() === item.productId);
@@ -30,15 +30,36 @@ const create = async (data) => {
       };
     });
 
+    //--------------------------------------------------
+    //SHIFT LOGIC: Verificar si ya hay un turno abierto:
+    const shift = getCurrentShift();
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    let currentShift = await ShiftReport.findOne({
+      currentShift: shift,
+      status: "abierto",
+      createdAt: { $gte: startOfToday },
+    });
+
+    if (!currentShift) {
+      console.log("🆕 No hay shift abierto, creando uno nuevo...");
+      currentShift = await ShiftReport.create({
+        currentShift: shift,
+        initiatedBy: data.userName || "Usuario desconocido",
+      });
+    }
+    //--------------------------------------------------
+
     const newOrder = await Order.create({
       order: enrichedOrder,
       totalPrice,
       name: data.name,
       address: data.address,
       phone: data.phone,
+      shiftReport: currentShift._id,
     });
 
-    // Buscar o crear cliente
     let client = await Client.findOne({ address: data.address });
 
     if (!client) {
@@ -57,15 +78,12 @@ const create = async (data) => {
       await client.save();
     }
 
- 
-
     return newOrder;
   } catch (error) {
     console.error("❌ Error al crear la orden:", error.message);
     throw new Error("Error creando el pedido. Verifica los datos enviados.");
   }
 };
-
 const read = async (page) => {
   const all = await Order.paginate(
     {},
