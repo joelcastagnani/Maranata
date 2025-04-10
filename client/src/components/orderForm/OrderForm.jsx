@@ -44,8 +44,6 @@ function OrderForm() {
 
     try {
       const token = localStorage.getItem("token");
-      console.log("🔐 Token que se va a enviar:", token);
-
       const response = await fetch("http://localhost:8080/api/orders", {
         method: "POST",
         headers: {

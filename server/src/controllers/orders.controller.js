@@ -14,12 +14,10 @@ const createOrder = async (req, res) => {
     const data = req.body;
     const userId = req.user?.userId || null;
 
-    console.log("🧪 Usuario logueado:", req.user);
-
     const newOrder = await create({
       ...data,
       user: userId,
-      userName: req.user?.username, // 🔧 Cambiado de "name" a "username"
+      userName: req.user?.username,
     });
 
     return res.status(201).json({
@@ -34,7 +32,6 @@ const createOrder = async (req, res) => {
     });
   }
 };
-
 const readOneOrder = async (req, res, next) => {
   try {
     const { pid } = req.params;

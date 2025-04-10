@@ -10,13 +10,11 @@ router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Verificamos si el usuario ya existe
     const userExists = await User.findOne({ username });
     if (userExists) {
       return res.status(400).json({ message: "El usuario ya está registrado." });
     }
 
-    // Creamos el nuevo usuario
     const newUser = new User({ username, password });
     await newUser.save();
 

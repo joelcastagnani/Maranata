@@ -13,7 +13,6 @@ import productsRouter from "./src/routers/products.router.js";
 import clientRouter from "./src/routers/client.router.js";
 
 dotenv.config();
-console.log("🔐 JWT_SECRET cargado:", process.env.JWT_SECRET);
 
 const server = express();
 const port = env.PORT || 8080;
@@ -21,7 +20,6 @@ const port = env.PORT || 8080;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Middleware para parsear JSON y formularios
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
@@ -32,7 +30,6 @@ const ready = async () => {
   await dbConnect();
 };
 
-// Middleware de CORS
 server.use(
   cors({
     origin: ["http://localhost:5173", "http://localhost:8080"], // Dominios permitidos
@@ -41,22 +38,18 @@ server.use(
   })
 );
 
-// Rutas de la API
 server.use("/api", router);
 server.use("/api/auth", authRouter);
 server.use("/api/orders", ordersRouter);
 server.use("/api/products", productsRouter);
 server.use("/api/clients", clientRouter);
 
-// Servir archivos estáticos después de las rutas de la API
 server.use(express.static(path.join(__dirname, "client", "dist")));
 
-// Manejar rutas no encontradas con el wildcard
 server.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
-// Iniciar el servidor
 server.listen(port, ready);
 
 export default server;
