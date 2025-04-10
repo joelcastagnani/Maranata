@@ -12,10 +12,6 @@ const Navbar = () => {
       <Link to="/admin" className="navbar-link">
         ADMIN
       </Link>
-
-      <Link to="/NOSAWEE" className="navbar-link">
-        -------
-      </Link>
     </nav>
   );
 };

@@ -94,6 +94,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+
       </Routes>
     </BrowserRouter>
   );

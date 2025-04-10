@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./OrderForm.css";
 import Popup from "../popup/Popup";
-import OrderSummaryModal from "../orderSumary/OrderSummary.jsx";
 import TicketModal from "../ticketModal/Ticketmodal.jsx";
 
 function OrderForm() {

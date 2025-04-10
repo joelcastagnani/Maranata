@@ -26,6 +26,8 @@ const HomePage = () => {
         isOpen={isOrdersOpen}
         onClose={() => setIsOrdersOpen(false)}
       />
+
+
     </div>
   );
 };

@@ -30,12 +30,6 @@ const create = async (data) => {
       };
     });
 
-    console.log("🧾 Datos recibidos para cliente:", {
-      name: data.name,
-      phone: data.phone,
-      address: data.address,
-    });
-
     const newOrder = await Order.create({
       order: enrichedOrder,
       totalPrice,
@@ -63,7 +57,8 @@ const create = async (data) => {
       await client.save();
     }
 
-    console.log("✅ Pedido y cliente procesados correctamente");
+ 
+
     return newOrder;
   } catch (error) {
     console.error("❌ Error al crear la orden:", error.message);

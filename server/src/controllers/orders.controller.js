@@ -12,7 +12,49 @@ import {
 const createOrder = async (req, res) => {
   try {
     const data = req.body;
-    const newOrder = await create(data);
+    const userId = req.user?.userId || null;
+
+    // 🕐 Detectar el turno actual
+    const currentShift = getCurrentShift();
+    if (!currentShift) {
+      return res.status(400).json({
+        message: "No es un horario válido para registrar una orden.",
+      });
+    }
+
+    // 📅 Limitar búsqueda al día actual
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    // 🔍 Buscar si ya existe un shift abierto para hoy y este turno
+    let existingShift = await ShiftSummary.findOne({
+      shift: currentShift,
+      createdAt: { $gte: startOfDay },
+      status: "abierto",
+    });
+
+    // 🆕 Si no existe, crear uno automáticamente
+    if (!existingShift) {
+      existingShift = await ShiftSummary.create({
+        date: new Date(), // solo fecha
+        shift: currentShift,
+        totalRevenue: 0,
+        usersInShift: userId ? [userId] : [],
+        status: "abierto",
+        openedAt: new Date(),
+      });
+
+    } else {
+      // ⚠️ Verificamos si el usuario ya está en el shift
+      if (userId && !existingShift.usersInShift.includes(userId)) {
+        existingShift.usersInShift.push(userId);
+        await existingShift.save();
+      }
+    }
+
+    // 🧾 Crear la orden
+    const newOrder = await create({ ...data, user: userId });
+
     return res.status(201).json({
       message: "Orden creada correctamente ✅",
       response: newOrder,
@@ -25,6 +67,60 @@ const createOrder = async (req, res) => {
     });
   }
 };
+
+
+// const createOrder = async (req, res) => {
+//   try {
+//     const data = req.body;
+//     const userId = req.user?.userId || null;
+
+//     // 🕐 Detectar el turno actual
+//     const currentShift = getCurrentShift();
+//     if (!currentShift) {
+//       return res.status(400).json({
+//         message: "No es un horario válido para registrar una orden.",
+//       });
+//     }
+
+//     // 📅 Limitar búsqueda al día actual
+//     const startOfDay = new Date();
+//     startOfDay.setHours(0, 0, 0, 0);
+
+//     // 🔍 Buscar si ya existe un shift abierto para hoy y este turno
+//     const existingShift = await ShiftSummary.findOne({
+//       shift: currentShift,
+//       createdAt: { $gte: startOfDay },
+//       status: "abierto",
+//     });
+
+//     // 🆕 Si no existe, crear uno automáticamente
+//     if (!existingShift) {
+//       await ShiftSummary.create({
+//         date: new Date(),                // 🔹 fecha del turno
+//         shift: currentShift,
+//         totalRevenue: 0,                 // 🔹 arranca en cero
+//         usersInShift: userId ? [userId] : [], // 🔹 registrar primer usuario si hay
+//         status: "abierto",
+//         openedAt: new Date(),
+//       });
+//     }
+
+//     // 🧾 Crear la orden
+//     const newOrder = await create({ ...data, user: userId });
+
+//     return res.status(201).json({
+//       message: "Orden creada correctamente ✅",
+//       response: newOrder,
+//     });
+//   } catch (error) {
+//     console.error("❌ Error en createOrder:", error.message);
+//     return res.status(500).json({
+//       message: "Error al crear la orden",
+//       error: error.message,
+//     });
+//   }
+// };
+
 const readOneOrder = async (req, res, next) => {
   try {
     const { pid } = req.params;
