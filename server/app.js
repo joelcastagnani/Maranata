@@ -11,6 +11,7 @@ import dotenv from "dotenv";
 import ordersRouter from "./src/routers/orders.router.js";
 import productsRouter from "./src/routers/products.router.js";
 import clientRouter from "./src/routers/client.router.js";
+import shiftRouter from "./src/routers/shifts.router.js";
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ server.use("/api/auth", authRouter);
 server.use("/api/orders", ordersRouter);
 server.use("/api/products", productsRouter);
 server.use("/api/clients", clientRouter);
+server.use("/api/shifts", shiftRouter);
 
 server.use(express.static(path.join(__dirname, "client", "dist")));
 
