@@ -21,6 +21,7 @@ export const closeShift = async (req, res) => {
     shift.closedBy = user;
     shift.totalSales = total;
     shift.totalOrders = orders.length;
+    shift.closedAt = new Date();
     await shift.save();
 
     res.status(200).json({ message: "Turno cerrado con éxito", shift });

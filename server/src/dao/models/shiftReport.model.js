@@ -7,12 +7,8 @@ const currentShift = getCurrentShift();
 const shiftReportSchema = new mongoose.Schema(
   {
     initiatedBy: {
-      type: String, // El nombre de la persona que inició el turno
+      type: String,
       required: true,
-    },
-    startDate: {
-      type: Date,
-      default: Date.now,
     },
     status: {
       type: String,
@@ -21,11 +17,26 @@ const shiftReportSchema = new mongoose.Schema(
     },
     currentShift: {
       type: String,
+      enum: ["mediodia", "noche", "test"],
       required: true,
     },
+    totalSales: {
+      type: Number,
+      default: 0,
+    },
+    totalOrders: {
+      type: Number,
+      default: 0,
+    },
+    closedBy: {
+      type: String,
+      default: null,
+    },
+    closedAt: { type: Date, default: null },
   },
   {
-    timestamps: true,
+    timestamps: { createdAt: true, updatedAt: false },
+    versionKey: false,
   }
 );
 
